@@ -1,6 +1,5 @@
 package br.unisinos.parthenos.injector.injector.model.pojoui.field;
 
-import br.unisinos.parthenos.injector.injector.model.pojoui.ClassModel;
 import br.unisinos.parthenos.injector.injector.model.pojoui.CreationModel;
 import com.jsoniter.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

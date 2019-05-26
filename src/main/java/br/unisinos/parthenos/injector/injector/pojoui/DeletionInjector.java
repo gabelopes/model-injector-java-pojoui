@@ -1,8 +1,9 @@
 package br.unisinos.parthenos.injector.injector.pojoui;
 
+import br.unisinos.parthenos.injector.exception.AnnotationNotFoundException;
 import br.unisinos.parthenos.injector.injector.model.pojoui.ClassModel;
 import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.Node;
+import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.nodeTypes.NodeWithAnnotations;
 import lombok.Getter;
 
@@ -17,12 +18,18 @@ public abstract class DeletionInjector<M extends ClassModel> extends AnnotationI
     this.annotationClass = annotationClass;
   }
 
+  private boolean removeAnnotation(NodeWithAnnotations<?> nodeWithAnnotations) {
+    final AnnotationExpr annotation = nodeWithAnnotations.getAnnotationByClass(this.getAnnotationClass()).orElse(null);
+
+    if (annotation == null) {
+      throw new AnnotationNotFoundException(this.getAnnotationClass());
+    }
+
+    return nodeWithAnnotations.getAnnotations().remove(annotation);
+  }
+
   @Override
   protected boolean injectAnnotation(NodeWithAnnotations<?> nodeWithAnnotations, CompilationUnit compilationUnit) {
-    nodeWithAnnotations
-      .getAnnotationByClass(this.getAnnotationClass())
-      .ifPresent(Node::remove);
-
-    return true;
+    return removeAnnotation(nodeWithAnnotations);
   }
 }

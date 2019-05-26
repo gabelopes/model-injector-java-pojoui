@@ -5,7 +5,6 @@ import br.unisinos.parthenos.injector.annotation.Model;
 import br.unisinos.parthenos.injector.annotation.Name;
 import br.unisinos.parthenos.injector.annotation.Target;
 import br.unisinos.parthenos.injector.injector.model.pojoui.ClassModel;
-import br.unisinos.parthenos.injector.injector.model.pojoui.CreationModel;
 import br.unisinos.parthenos.injector.injector.pojoui.DeletionInjector;
 import br.unisinos.parthenos.pojoui.annotation.Panel;
 import com.github.javaparser.ast.CompilationUnit;
